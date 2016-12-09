@@ -6,7 +6,6 @@ var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify');
-var reactify = require('reactify');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -36,7 +35,7 @@ function compile(watch) {
         paths: ['./app/', './']
       }).transform(
         babelify.configure({
-          stage: 0
+          presets: [ "es2015", "react" ],
         })
       ).transform(
         stringify(['.py', '.rb', '.md', '.hpc',
